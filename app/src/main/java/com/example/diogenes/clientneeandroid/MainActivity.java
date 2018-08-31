@@ -27,20 +27,23 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    OkHttpClient client = new OkHttpClient();
+
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        getSample();
-
         try {
             postSample();
+            // Para testar o Get comente a chamada acima e retire o comentário da chamada abaixo.
+            // getSample();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void getSample() {
@@ -100,11 +103,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
-
-    OkHttpClient client = new OkHttpClient();
-
     private void postSample() throws IOException {
 
         String url = "http://192.168.137.1:8080/cores";
@@ -146,10 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
-
-
 
 }
